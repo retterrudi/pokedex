@@ -1,12 +1,16 @@
 [versions]
 agp = "8.5.2"
+#noinspection GradleDependency
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+#noinspection GradleDependency
 lifecycleRuntimeKtx = "2.8.3"
+#noinspection GradleDependency
 activityCompose = "1.9.0"
+#noinspection GradleDependency
 composeBom = "2024.04.01"
 
 [libraries]

@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    //noinspection GradleDependency
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
 }
 
 android {
@@ -59,7 +61,18 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    //noinspection UseTomlInstead
+    implementation("com.squareup.retrofit2:converter-kotlinx-serialization:2.11.0")
+    //noinspection GradleDependency,UseTomlInstead
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    //noinspection UseTomlInstead
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
+
     testImplementation(libs.junit)
+    //noinspection UseTomlInstead
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
