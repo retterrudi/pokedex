@@ -61,7 +61,7 @@ data class PokemonForm(
  * */
 @Serializable
 data class PokemonGameIndex(
-    val gameIndex: Int,
+    @SerialName("game_index") val gameIndex: Int,
     val version: Version,
 )
 

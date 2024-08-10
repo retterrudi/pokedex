@@ -22,4 +22,13 @@ class PokemonRepositoryTest {
         val kanto = container.pokemonRepository.getPokedex("kanto")
         println(kanto.toString())
     }
+
+    @Test
+    fun `GET pokemon by name`() = runBlocking {
+        val bulbasaur = container.pokemonRepository.getPokemon("bulbasaur")
+        println(bulbasaur.toString())
+
+        val nidoqueen = container.pokemonRepository.getPokemon("nidoqueen")
+        println(nidoqueen.toString())
+    }
 }
