@@ -1,9 +1,9 @@
-package retterrudi.pokedex.model
+package retterrudi.pokedex.model.stats
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PokemonSpecies(
+data class StatName(
     val name: String,
-    val url: String
+    val url: String,
 )

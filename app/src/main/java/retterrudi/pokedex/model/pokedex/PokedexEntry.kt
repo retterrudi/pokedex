@@ -2,7 +2,7 @@ package retterrudi.pokedex.model.pokedex
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import retterrudi.pokedex.model.PokemonSpecies
+import retterrudi.pokedex.model.pokemon.PokemonSpecies
 
 @Serializable
 data class PokedexEntry(
