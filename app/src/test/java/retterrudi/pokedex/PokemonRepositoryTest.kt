@@ -13,4 +13,13 @@ class PokemonRepositoryTest {
         val result = container.pokemonRepository.getPokedexOverview()
         println(result.toString())
     }
+
+    @Test
+    fun `GET pokedex by name`() = runBlocking {
+        val national = container.pokemonRepository.getPokedex("national")
+        println(national.toString())
+
+        val kanto = container.pokemonRepository.getPokedex("kanto")
+        println(kanto.toString())
+    }
 }

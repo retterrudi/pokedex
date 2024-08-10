@@ -1,4 +1,4 @@
-package retterrudi.pokedex.model
+package retterrudi.pokedex.model.pokedex.overview
 
 import kotlinx.serialization.Serializable
 
@@ -8,10 +8,4 @@ data class PokedexOverview(
     val next: String?,
     val previous: String?,
     val results: List<PokedexOverviewResult>
-)
-
-@Serializable
-data class PokedexOverviewResult(
-    val name: String,
-    val url: String
 )
