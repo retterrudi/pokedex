@@ -2,6 +2,7 @@ package retterrudi.pokedex
 
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
+import org.junit.Assert.*
 import retterrudi.pokedex.data.DefaultAppContainer
 
 class PokemonRepositoryTest {
@@ -11,24 +12,24 @@ class PokemonRepositoryTest {
     @Test
     fun `basic call to api`() = runBlocking {
         val result = container.pokemonRepository.getPokedexOverview()
-        println(result.toString())
+        assertEquals("national", result.results[0].name)
     }
 
     @Test
     fun `GET pokedex by name`() = runBlocking {
         val national = container.pokemonRepository.getPokedex("national")
-        println(national.toString())
+        assertEquals("national", national.name)
 
         val kanto = container.pokemonRepository.getPokedex("kanto")
-        println(kanto.toString())
+        assertEquals("kanto", kanto.name)
     }
 
     @Test
     fun `GET pokemon by name`() = runBlocking {
         val bulbasaur = container.pokemonRepository.getPokemon("bulbasaur")
-        println(bulbasaur.toString())
+        assertEquals("bulbasaur", bulbasaur.name)
 
         val nidoqueen = container.pokemonRepository.getPokemon("nidoqueen")
-        println(nidoqueen.toString())
+        assertEquals("nidoqueen", nidoqueen.name)
     }
 }
