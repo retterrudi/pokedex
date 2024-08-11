@@ -1,10 +1,9 @@
-package retterrudi.pokedex.model.item
+package retterrudi.pokedex.model
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ItemName(
+data class GenerationName(
     val name: String,
     val url: String,
 )
-

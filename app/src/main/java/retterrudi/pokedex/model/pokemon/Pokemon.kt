@@ -2,8 +2,6 @@ package retterrudi.pokedex.model.pokemon
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import retterrudi.pokedex.model.Version
-import retterrudi.pokedex.model.VersionGroup
 import retterrudi.pokedex.model.item.PokemonHeldItem
 
 @Serializable
@@ -31,61 +29,3 @@ data class Pokemon(
     val weight: Int,
 )
 
-@Serializable
-data class PokemonAbility(
-    val ability: PokemonAbilityName,
-    @SerialName("is_hidden") val isHidden: Boolean,
-    val slot: Int,
-)
-
-@Serializable
-data class PokemonAbilityName(
-    val name: String,
-    val url: String,
-)
-
-@Serializable
-data class PokemonCries(
-    val latest: String,
-    val legacy: String,
-)
-
-@Serializable
-data class PokemonForm(
-    val name: String,
-    val url: String,
-)
-
-/**
- * Note: Maybe GameIndex is enough for the name
- * */
-@Serializable
-data class PokemonGameIndex(
-    @SerialName("game_index") val gameIndex: Int,
-    val version: Version,
-)
-
-@Serializable
-data class PokemonMove(
-    val move: PokemonMoveName,
-    @SerialName("version_group_details") val versionGroupDetails: List<PokemonMoveVersion>
-)
-
-@Serializable
-data class PokemonMoveName(
-    val name: String,
-    val url: String,
-)
-
-@Serializable
-data class PokemonMoveVersion(
-    @SerialName("level_learned_at") val levelLearnedAt: Int,
-    @SerialName("move_learn_method") val moveLearnMethod: MoveLearnMethodName,
-    @SerialName("version_group") val versionGroup: VersionGroup,
-)
-
-@Serializable
-data class MoveLearnMethodName(
-    val name: String,
-    val url: String,
-)

@@ -1,6 +1,7 @@
 package retterrudi.pokedex.model.pokemon
 
 import kotlinx.serialization.Serializable
+import retterrudi.pokedex.model.GenerationName
 
 @Serializable
 data class PokemonTypePast(
@@ -8,8 +9,3 @@ data class PokemonTypePast(
     val types: List<PokemonType>,
 )
 
-@Serializable
-data class GenerationName(
-    val name: String,
-    val url: String,
-)
