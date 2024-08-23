@@ -68,6 +68,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     //noinspection UseTomlInstead
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
 
     testImplementation(libs.junit)
     //noinspection UseTomlInstead
