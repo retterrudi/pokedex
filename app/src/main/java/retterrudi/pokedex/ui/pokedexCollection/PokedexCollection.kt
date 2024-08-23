@@ -1,4 +1,4 @@
-package retterrudi.pokedex.ui
+package retterrudi.pokedex.ui.pokedexCollection
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,6 +17,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import retterrudi.pokedex.ui.AppViewModelProvider
+
+@Composable
+fun PokedexCollectionScreen(
+    viewModel: PokedexCollectionViewModel = viewModel(factory = AppViewModelProvider.Factory)
+) {
+    // TODO
+}
 
 @Composable
 fun PokedexGrid(
@@ -40,18 +49,6 @@ fun PokedexGrid(
     }
 }
 
-@Preview(
-    showBackground = true,
-    widthDp = 400
-)
-@Composable
-fun PokedexGridPreview() {
-    PokedexGrid(
-        pokedexList = listOf("kanto", "national", "test"),
-        contentPadding = PaddingValues(4.dp),
-    )
-}
-
 @Composable
 fun PokedexCard(
     pokedexName: String,
@@ -65,14 +62,31 @@ fun PokedexCard(
             modifier = Modifier.fillMaxHeight(),
             contentAlignment = Alignment.Center
         ) {
-            Text(text = pokedexName, Modifier.padding(12.dp, 4.dp))
+            Text(
+                text = pokedexName,
+                Modifier
+                    .padding(12.dp, 4.dp)
+//                    .wrapContentSize()
+            )
         }
     }
 }
 
 @Preview(
     showBackground = true,
-    heightDp = 48
+    widthDp = 400,
+)
+@Composable
+fun PokedexGridPreview() {
+    PokedexGrid(
+        pokedexList = listOf("kanto", "national", "jonto"),
+        contentPadding = PaddingValues(4.dp),
+    )
+}
+
+@Preview(
+    showBackground = true,
+    heightDp = 48,
 )
 @Composable
 fun PokedexCardPreview() {
