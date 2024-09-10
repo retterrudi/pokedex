@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,19 +19,54 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import retterrudi.pokedex.navigation.NavigationDestination
 import retterrudi.pokedex.ui.AppViewModelProvider
+
+object PokedexCollectionDestination : NavigationDestination {
+    override val route = "pokedexCollection"
+}
 
 @Composable
 fun PokedexCollectionScreen(
     viewModel: PokedexCollectionViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
-    // TODO
+    val uiState = viewModel.uiState
+
+    when (uiState) {
+        is PokedexCollectionUiState.Success -> PokedexCollection(uiState.pokedexList)
+        is PokedexCollectionUiState.Loading -> PokedexCollectionLoadingScreen()
+        is PokedexCollectionUiState.Error -> PokedexCollectionErrorScreen { viewModel.reloadData() }
+    }
+}
+
+@Composable
+fun PokedexCollection(pokedexList: List<String>) {
+    PokedexGrid(
+        pokedexList = pokedexList,
+        /* TODO */ contentPadding = PaddingValues(4.dp),
+        /* TODO: Navigate to PokedexScreen of the selected pokedex */ {},
+    )
+}
+
+
+@Composable
+fun PokedexCollectionLoadingScreen() {
+    Text("Still Loading")
+}
+
+@Composable
+fun PokedexCollectionErrorScreen(onClick: () -> Unit) {
+    Text(text = "Error!")
+    Button(onClick = onClick) {
+        Text(text = "Reload")
+    }
 }
 
 @Composable
 fun PokedexGrid(
     pokedexList: List<String>,
     contentPadding: PaddingValues,
+    pokedexCardOnClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
@@ -43,6 +79,7 @@ fun PokedexGrid(
         items(pokedexList) { item ->
             PokedexCard(
                 pokedexName = item,
+                onClick = pokedexCardOnClick,
                 modifier = Modifier.height(48.dp)
             )
         }
@@ -52,10 +89,11 @@ fun PokedexGrid(
 @Composable
 fun PokedexCard(
     pokedexName: String,
+    onClick: () -> (Unit),
     modifier: Modifier = Modifier,
 ) {
     Card(
-        onClick = { /*TODO*/ },
+        onClick = onClick,
         modifier = modifier,
     ) {
         Box(
@@ -66,7 +104,6 @@ fun PokedexCard(
                 text = pokedexName,
                 Modifier
                     .padding(12.dp, 4.dp)
-//                    .wrapContentSize()
             )
         }
     }
@@ -80,6 +117,7 @@ fun PokedexCard(
 fun PokedexGridPreview() {
     PokedexGrid(
         pokedexList = listOf("kanto", "national", "jonto"),
+        pokedexCardOnClick = {},
         contentPadding = PaddingValues(4.dp),
     )
 }
@@ -92,6 +130,7 @@ fun PokedexGridPreview() {
 fun PokedexCardPreview() {
     PokedexCard(
         "kanto",
+        {},
         Modifier.width(200.dp)
     )
 }
