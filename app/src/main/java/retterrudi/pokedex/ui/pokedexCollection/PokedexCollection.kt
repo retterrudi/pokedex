@@ -28,23 +28,24 @@ object PokedexCollectionDestination : NavigationDestination {
 
 @Composable
 fun PokedexCollectionScreen(
+    pokedexOnClick: (String) -> Unit,
     viewModel: PokedexCollectionViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     val uiState = viewModel.uiState
 
     when (uiState) {
-        is PokedexCollectionUiState.Success -> PokedexCollection(uiState.pokedexList)
+        is PokedexCollectionUiState.Success -> PokedexCollection(uiState.pokedexList, pokedexOnClick)
         is PokedexCollectionUiState.Loading -> PokedexCollectionLoadingScreen()
         is PokedexCollectionUiState.Error -> PokedexCollectionErrorScreen { viewModel.reloadData() }
     }
 }
 
 @Composable
-fun PokedexCollection(pokedexList: List<String>) {
+fun PokedexCollection(pokedexList: List<String>, pokedexOnClick: (String) -> Unit) {
     PokedexGrid(
         pokedexList = pokedexList,
         /* TODO */ contentPadding = PaddingValues(4.dp),
-        /* TODO: Navigate to PokedexScreen of the selected pokedex */ {},
+        pokedexCardOnClick = pokedexOnClick,
     )
 }
 
@@ -66,7 +67,7 @@ fun PokedexCollectionErrorScreen(onClick: () -> Unit) {
 fun PokedexGrid(
     pokedexList: List<String>,
     contentPadding: PaddingValues,
-    pokedexCardOnClick: () -> Unit,
+    pokedexCardOnClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
@@ -79,7 +80,7 @@ fun PokedexGrid(
         items(pokedexList) { item ->
             PokedexCard(
                 pokedexName = item,
-                onClick = pokedexCardOnClick,
+                onClick = { pokedexCardOnClick(item) },
                 modifier = Modifier.height(48.dp)
             )
         }
