@@ -20,8 +20,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PokedexTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    PokedexApp()
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    PokedexApp(innerPadding)
                 }
             }
 
